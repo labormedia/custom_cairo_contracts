@@ -1,4 +1,5 @@
 use core::starknet::ContractAddress;
+mod factory;
 
 #[starknet::interface]
 pub trait INameRegistry<TContractState> {
