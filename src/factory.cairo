@@ -1,7 +1,7 @@
 use starknet::{ContractAddress, ClassHash, SyscallResult};
 
 #[starknet::interface]
-trait IFactory<TContractState> {
+pub trait IFactory<TContractState> {
     fn deploy(
         ref self: TContractState,
         class_hash: ClassHash,
@@ -11,7 +11,7 @@ trait IFactory<TContractState> {
 }
 
 #[starknet::contract]
-mod Factory {
+pub mod Factory {
     use super::IFactory;
     use starknet::{ContractAddress, ClassHash, syscalls, SyscallResult};
 

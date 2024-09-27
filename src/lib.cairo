@@ -144,3 +144,5 @@ mod NameRegistry {
         self.owner.__base_address__
     }
 }
+
+mod tests;
