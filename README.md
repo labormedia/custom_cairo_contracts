@@ -30,9 +30,6 @@ starkli declare --watch target/dev/custom_cairo_contracts_NameRegistry.contract_
 ## Deploy example to account 0x0553a04e27e23b8c32961585ed96cd0c9f8755240fa9dc61df1b94f5bdbf5f57 , cairo string 0x7175616e74697479.
 ```bash
 starkli deploy --watch 0x0435fe6ec99df5810a05c6937c09f55b26d972f54332fd186451f24ec744fc3b 0x0553a04e27e23b8c32961585ed96cd0c9f8755240fa9dc61df1b94f5bdbf5f57  0x7175616e74697479 --rpc http://127.0.0.1:5050 --account ~/.starkli-wallets/devnet/account.json --keystore ~/.starkli-wallets/devnet/keystore.json
-d972f54332fd186451f24ec744fc3b 0x0553a04e27e23b8c32961585ed96cd0c9f8755240fa9dc61df1b94f5bdbf5f57  0x7175616e74697479
- --rpc http://127.0.0.1:5050 --account ~/.starkli-wallets/devnet/account.json --keystore ~/.starkli-wallets/devnet/ke
-ystore.json
 Enter keystore password: 
 Deploying class 0x0435fe6ec99df5810a05c6937c09f55b26d972f54332fd186451f24ec744fc3b with salt 0x01e94f154a90443ab68ab95e74539c5e8e08e2536fd62437f3e4a1e6c6630a99...
 The contract will be deployed at address 0x045a4f23125b781f4cb148e668f3ae6194c1b01cfa815af88f780438765fc180
