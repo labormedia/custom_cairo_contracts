@@ -11,7 +11,7 @@ trait IOwnable<TState> {
 }
 
 #[starknet::contract]
-mod Ownable {
+pub mod Ownable {
     use super::{IOwnable, ContractAddress, Zero};
     use starknet::get_caller_address;
     
@@ -31,7 +31,7 @@ mod Ownable {
     }
 
     #[generate_trait]
-    impl InternalImpl of InternalTrait {
+    pub impl InternalImpl of InternalTrait {
         fn initializer(ref self: ContractState, owner: ContractAddress) {
             self._transfer_ownership(owner);
         }
@@ -50,7 +50,7 @@ mod Ownable {
     }
 
     #[abi(embed_v0)]
-    impl OwnableImpl of IOwnable<ContractState> {
+    pub impl OwnableImpl of IOwnable<ContractState> {
         fn owner(self: @ContractState) -> ContractAddress {
             self.owner.read()
         }

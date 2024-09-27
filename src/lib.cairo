@@ -10,6 +10,7 @@ pub trait INameRegistry<TContractState> {
     fn get_name(self: @TContractState, address: ContractAddress) -> felt252;
     fn get_owner(self: @TContractState) -> NameRegistry::Person;
     fn get_owner_name(self: @TContractState) -> felt252;
+    fn get_owner_address(self: @TContractState) -> ContractAddress;
     fn get_registration_info(
         self: @TContractState, address: ContractAddress
     ) -> NameRegistry::RegistrationInfo;
@@ -21,6 +22,7 @@ mod NameRegistry {
     use core::starknet::storage::{
         Map, StoragePathEntry, StoragePointerReadAccess, StoragePointerWriteAccess
     };
+    use super::ownable::Ownable;
 
     #[storage]
     struct Storage {
@@ -70,6 +72,8 @@ mod NameRegistry {
 
     #[constructor]
     fn constructor(ref self: ContractState, owner: Person) {
+        let mut state: Ownable::ContractState = Ownable::unsafe_new_contract_state();
+        Ownable::InternalImpl::initializer(ref state, owner.address);
         self.names.entry(owner.address).write(owner.name);
         self.total_names.write(1);
         self.owner.write(owner);
@@ -89,6 +93,11 @@ mod NameRegistry {
 
         fn get_owner(self: @ContractState) -> Person {
             self.owner.read()
+        }
+
+        fn get_owner_address(self: @ContractState) -> ContractAddress {
+            let state: Ownable::ContractState = Ownable::unsafe_new_contract_state();
+            Ownable::OwnableImpl::owner(@state)
         }
 
         fn get_owner_name(self: @ContractState) -> felt252 {
@@ -145,4 +154,5 @@ mod NameRegistry {
     }
 }
 
+#[cfg(test)]
 mod tests;
